@@ -1,0 +1,32 @@
+#! /usr/bin/ruby
+require 'timeout'
+
+def router?
+  r, w = IO.pipe
+  system("networksetup -getinfo Wi-Fi", out: w)
+  w.close
+  lines = r.readlines
+  lines.any? {|line| line=~ /Router: \d+/i }
+end
+
+def cycle_airport
+  system("networksetup setairportpower - off", out: "/dev/null")
+  system("networksetup setairportpower - on",  out: "/dev/null")
+end
+
+begin
+  interval = 10
+  Timeout::timeout(60) do
+    until router?
+      cycle_airport
+      print '.'
+      sleep interval
+      interval *= 1.5
+    end
+  end
+  puts "\nConnected to router."
+  exit 0
+rescue Timeout::Error
+  puts "\nUnable to connect to router."
+  exit 1
+end
