@@ -6,11 +6,12 @@ require 'wifiddler/version'
 Gem::Specification.new do |spec|
   spec.name          = "wifiddler"
   spec.version       = Wifiddler::VERSION
+  spec.platform      = Gem::Platform::RUBY
   spec.authors       = ["Greg Sterndale"]
   spec.email         = ["gsterndale@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Simple CLI to cycle OSX AirPort (Wi-Fi) off & on}
+  spec.description   = %q{Cycle your AirPort off & on until it connects to a network}
+  spec.homepage      = "http://github.com/gsterndale/wifiddler"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,4 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
+
+  # Release every merge to master as a prerelease
+  spec.version = "#{spec.version}.pre#{ENV['TRAVIS_BUILD_NUMBER']}" if ENV['TRAVIS']
 end
