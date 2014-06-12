@@ -1,24 +1,18 @@
 # Wifiddler
 
-TODO: Write a gem description
+Simple CLI to cycle OSX AirPort (Wi-Fi) off & on until it connects to a network}
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'wifiddler'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install wifiddler
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ wifiddler
+
+## TODO
+
+See [GitHub issues](https://github.com/gsterndale/wifiddler/issues) for a list of desired features and bug fixes.
 
 ## Contributing
 
